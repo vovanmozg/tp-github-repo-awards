@@ -1,0 +1,44 @@
+<!-- app/views/home/_generate_form.html.erb -->
+
+<% if flash[:notice] %>
+    <div class="card-panel green lighten-5">
+      <span class="green-text text-lighten-2">
+        <%= flash[:notice] %>
+      </span>
+    </div>
+<% end %>
+
+<% if flash[:error] %>
+    <div class="card-panel red lighten-5">
+      <span class="red-text text-lighten-2">
+        <%= flash[:error] %>
+      </span>
+    </div>
+<% end %>
+
+<%= form_with model: @diploma, url: home_index_path(id: @diploma.id), local: true do |form| %>
+    <% if @diploma.errors.any? %>
+        <div class="card-panel red lighten-5">
+          <% @diploma.errors.full_messages.each do |message| %>
+              <span class="red-text text-lighten-2">
+              <%= content_tag(:div, message, class: "alert") %>
+            </span>
+          <% end %>
+        </div>
+    <% end %>
+
+    <%= form.label :url, "Repository URL:" %>
+    <%= form.text_field :url %>
+    <%= form.submit "Generate", class: 'waves-effect waves-light btn' %>
+<% end %>
+
+<% unless @diploma.champions.blank? %>
+<h4>Download results</h4>
+  <ol>
+    <% @diploma.champions.each_with_index do |champion, i| %>
+      <li><%= link_to champion, "/diplomas/#{@diploma.id}/pdf/diploma-#{i+1}.pdf", target: '_blank' %></li>
+    <% end %>
+  </ol>
+
+  <%= link_to 'Download zip (3)', "/diplomas/#{@diploma.id}/diplomas.zip", target: '_blank' %>
+<% end %>

@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+@import 'materialize';
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#app {
+    height: 100%;
+    margin: 0 auto;
+    width: 50%;
+}
+
+
+.field_with_errors input {
+    @extend .invalid;
+}

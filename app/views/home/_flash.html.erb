@@ -1,0 +1,11 @@
+<!-- app/views/home/_flash.html.erb -->
+
+<% if flash.count > 0 %>
+    <div class="card-panel red lighten-5">
+      <span class="red-text text-lighten-2">
+        <% flash.each do |message_type, message| %>
+            <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+        <% end %>
+      </span>
+    </div>
+<% end %>
