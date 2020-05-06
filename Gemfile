@@ -47,7 +47,7 @@ gem 'prawn', '~> 2.2'
 
 gem 'rest-client', '~> 2.0'
 
-gem 'rubyzip', '~> 1.2'
+gem 'rubyzip', '~> 1.3'
 
 gem 'zip-zip', '~> 0.3'
 
